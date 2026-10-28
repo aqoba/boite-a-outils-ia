@@ -1,0 +1,9 @@
+{
+  "name": "prompt-check",
+  "description": "Relit un prompt avant envoi (Claude, ChatGPT, Gemini, Copilot), en français ou en anglais, le corrige et conseille le modèle. Mode automatique en option.",
+  "version": "1.0.0",
+  "author": {
+    "name": "aqoba",
+    "url": "https://aqoba.fr"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "aqoba",
+  "description": "Skills, mods et plugins IA publiés par aqoba.",
+  "owner": {
+    "name": "aqoba",
+    "url": "https://aqoba.fr"
+  },
+  "plugins": [
+    {
+      "name": "prompt-check",
+      "source": "./plugins/prompt-check",
+      "description": "Relit un prompt avant envoi (Claude, ChatGPT, Gemini, Copilot), en français ou en anglais, le corrige et conseille le modèle. Mode automatique en option.",
+      "version": "1.0.0"
+    }
+  ]
+}
