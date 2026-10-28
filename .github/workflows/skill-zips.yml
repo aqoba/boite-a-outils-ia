@@ -36,7 +36,8 @@ jobs:
           {
             echo "Zips des skills, reconstruits automatiquement depuis \`${GITHUB_SHA::7}\`."
             echo
-            echo "Pour claude.ai : téléchargez le zip de la skill et importez-le dans les paramètres de Claude, rubrique Skills."
+            echo "- \`<skill>.zip\` : pour claude.ai et Gemini."
+            echo "- \`<skill>-plugin.zip\` : pour ChatGPT (nouveau plugin)."
             echo
             for f in dist/*.zip; do
               n=$(basename "$f" .zip)
