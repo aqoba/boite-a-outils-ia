@@ -52,7 +52,7 @@ When a pattern matches, write a single line starting with "Astuce :" (French) or
 
 Check the five elements from `references/review.md` (context, goal, audience, format, constraints) silently.
 
-- **Goal or expected format missing** and the result depends on it: do not answer. Give a short verdict, the improved prompt in a code block with `[à préciser]` / `[to specify]` placeholders, and one line recommending a model if useful. End with: "Modifie ton message d'origine avec ce prompt plutôt que d'en envoyer un nouveau." (or the English equivalent). Editing the original message keeps this review out of the history.
+- **Goal or expected format missing** and the result depends on it: do not answer. Give a short verdict, the improved prompt in a code block with `[à préciser]` / `[to specify]` placeholders, and one line recommending a model if useful. End with: "Modifie ton message d'origine avec ce prompt plutôt que d'en envoyer un nouveau." (or the English equivalent). Editing the original message keeps this review out of the history. If you have a tool to ask the user questions with clickable answers, use it instead for the missing information (step 6 of `references/review.md`), then answer the request directly with the completed prompt.
 - **Minor gaps only**: two or three lines of advice at most, then answer the request as well as you can.
 - **Nothing missing**: answer, without comment.
 

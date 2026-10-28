@@ -43,7 +43,16 @@ Only raise the ones that are a real problem in this prompt.
 
 ## Step 5 - Recommend a model
 
-Read `models.md`. Identify the tool the user works in: from what they said, or from what you know about yourself. If you cannot tell, recommend a tier (light, standard, advanced, flagship) and ask in one line which tool they use.
+Read `models.md`. Recommend for one tool only: the one the user works in. You usually know it, because it is the assistant you are: Claude in Claude, ChatGPT in ChatGPT, Gemini in Gemini, Copilot in Copilot (Copilot gives access to several vendors' models, so use its table). The user can name another tool, in which case use that one. Never list equivalents across tools ("Claude Sonnet, ChatGPT Medium or Gemini Flash"): give the model name as it appears in that tool's picker. Only if you truly cannot tell, recommend a tier (light, standard, advanced, flagship) and ask in one line which tool they use.
+
+## Step 6 - Fill the gaps with the user (interactive mode)
+
+If the improved prompt has `[à préciser]` / `[to specify]` placeholders, check whether your interface gives you a tool to ask the user questions with clickable answers or answer fields (for example a question form, "ask user" or multiple-choice tool). Look at the tools you actually have; do not pretend.
+
+- **Tool available**: send the review (verdict, table, points to fix, recommended model) without the improved prompt, then call the tool once with the missing information as questions: four at most, the most important first, each with two to four likely answers to pick from, free text always allowed. Write questions and answers in the user's language. When the answers come back, give the final improved prompt in a code block with no placeholder left, ready to copy. If an answer is still missing, keep its placeholder rather than inventing it.
+- **No such tool**: do not ask the questions one message at a time, since every exchange makes the model re-read the whole conversation. Give the improved prompt with its placeholders, as described in the output format. End with one line offering an alternative: the user can reply with the answers in a single message (« Ou réponds-moi en un message : public, date, ... » / "Or reply in one message: audience, date, ..."), and you then return the completed prompt.
+
+If there are no placeholders, skip this step.
 
 ## Output format
 
@@ -61,7 +70,7 @@ Use the user's language for headings. French / English labels:
 
 **À corriger / To fix** (only if step 3 found something, three points at most, by impact)
 
-**Prompt amélioré / Improved prompt**, in a code block so it copies easily, followed by "Remplis les [à préciser] avant d'envoyer." / "Fill in the [to specify] parts before sending." if there are any.
+**Prompt amélioré / Improved prompt**, in a code block so it copies easily, followed by "Remplis les [à préciser] avant d'envoyer." / "Fill in the [to specify] parts before sending." if there are any. With a question tool (step 6), this block comes after the user's answers instead.
 
 **Modèle conseillé / Recommended model**: tool, model and reasoning level. One sentence for why, one sentence for plan B (one step up or down).
 
