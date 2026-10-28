@@ -8,7 +8,7 @@ Skills, mods et plugins IA publiés par [aqoba](https://aqoba.fr), pour nos clie
 | :-- | :-- |
 | `prompt-check` | Relit un prompt avant envoi (Claude, ChatGPT, Gemini, Copilot), en français ou en anglais, le corrige et conseille le modèle. Mode automatique en option. |
 
-## Installation
+## Installation et utilisation
 
 Pour Claude, ChatGPT et Gemini, tout commence par le même fichier : **[téléchargez prompt-check.zip](https://github.com/aqoba/boite-a-outils-ia/releases/download/skills/prompt-check.zip)**. Ne le décompressez pas, chaque outil l'importe tel quel. Ce lien donne toujours la dernière version. Les zips de toutes les skills sont dans la [release « skills »](https://github.com/aqoba/boite-a-outils-ia/releases/tag/skills).
 
