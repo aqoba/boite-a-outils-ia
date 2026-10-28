@@ -10,7 +10,7 @@ Skills, mods et plugins IA publiés par [aqoba](https://aqoba.fr), pour nos clie
 
 ## Installation et utilisation
 
-Pour Claude et Gemini, **[téléchargez prompt-check.zip](https://github.com/aqoba/boite-a-outils-ia/releases/download/skills/prompt-check.zip)**. ChatGPT attend un autre format : **[téléchargez prompt-check-plugin.zip](https://github.com/aqoba/boite-a-outils-ia/releases/download/skills/prompt-check-plugin.zip)**. Ne les décompressez pas, chaque outil importe le zip tel quel. Ce lien donne toujours la dernière version. Les zips de toutes les skills sont dans la [release « skills »](https://github.com/aqoba/boite-a-outils-ia/releases/tag/skills).
+Pour Claude, ChatGPT et Gemini, tout commence par le même fichier : **[téléchargez prompt-check.zip](https://github.com/aqoba/boite-a-outils-ia/releases/download/skills/prompt-check.zip)**. Ne le décompressez pas, chaque outil l'importe tel quel. Ce lien donne toujours la dernière version. Les zips de toutes les skills sont dans la [release « skills »](https://github.com/aqoba/boite-a-outils-ia/releases/tag/skills).
 
 
 ### claude.ai et application Claude
@@ -21,12 +21,12 @@ Pour Claude et Gemini, **[téléchargez prompt-check.zip](https://github.com/aqo
 
 ### ChatGPT
 
-1. Dans la barre latérale, ouvrez **Plugins**, puis créez un nouveau plugin (fenêtre **New Plugin**).
-2. Choisissez `prompt-check-plugin.zip` (et non `prompt-check.zip`, que ChatGPT refuse), puis cliquez sur **Add plugin**.
+1. Dans la barre latérale, ouvrez **Plugins**, puis l'onglet **Skills**.
+2. Cliquez sur **Create**, puis **Upload from your computer**, et choisissez `prompt-check.zip`.
 3. Attendez la fin de l'analyse du fichier par ChatGPT.
 4. Dans une nouvelle discussion, citez `prompt-check` dans votre message pour être sûr qu'il est utilisé.
 
-Les plugins ne sont pas proposés sur tous les abonnements. Si vous ne voyez pas **Plugins**, voir « Sans gestion des skills » plus bas.
+Les skills sont proposées sur les espaces Business, Enterprise et Edu, si l'administrateur a activé l'import. Si vous ne voyez pas **Plugins** ou **Skills**, voir « Sans gestion des skills » plus bas.
 
 ### Codex (application ChatGPT pour le code et le travail sur fichiers)
 
