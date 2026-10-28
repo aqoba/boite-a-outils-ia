@@ -12,14 +12,12 @@ Skills, mods et plugins IA publiés par [aqoba](https://aqoba.fr), pour nos clie
 
 Pour Claude, ChatGPT et Gemini, tout commence par le même fichier : **[téléchargez prompt-check.zip](https://github.com/aqoba/boite-a-outils-ia/releases/download/skills/prompt-check.zip)**. Ne le décompressez pas, chaque outil l'importe tel quel. Ce lien donne toujours la dernière version. Les zips de toutes les skills sont dans la [release « skills »](https://github.com/aqoba/boite-a-outils-ia/releases/tag/skills).
 
-### Gemini
 
-1. Dans la barre latérale, ouvrez **Personnaliser**, puis l'onglet **Compétences**.
-2. Cliquez sur **Créer**, puis **Importer**, et choisissez `prompt-check.zip`.
-3. Vérifiez la compétence, puis validez. Elle apparaît dans **Actives**.
-4. Dans une discussion, tapez `@prompt-check` suivi de votre prompt.
+### claude.ai et application Claude
 
-Les compétences demandent un abonnement Google AI Pro ou Ultra et un compte Google personnel.
+1. Ouvrez **Paramètres**, puis **Capacités**, rubrique **Skills**.
+2. Importez `prompt-check.zip`.
+3. Dans une discussion, tapez `/prompt-check` suivi de votre prompt, ou demandez « relis mon prompt ».
 
 ### ChatGPT
 
@@ -41,18 +39,21 @@ https://github.com/aqoba/boite-a-outils-ia/tree/main/plugins/prompt-check/skills
 
 Codex copie le dossier complet, références comprises. La skill est disponible au message suivant. Appelez-la avec `$prompt-check` suivi de votre prompt.
 
-### claude.ai et application Claude
-
-1. Ouvrez **Paramètres**, puis **Capacités**, rubrique **Skills**.
-2. Importez `prompt-check.zip`.
-3. Dans une discussion, tapez `/prompt-check` suivi de votre prompt, ou demandez « relis mon prompt ».
-
 ### Claude Code
 
 ```
 /plugin marketplace add aqoba/boite-a-outils-ia
 /plugin install prompt-check@aqoba
 ```
+
+### Gemini
+
+1. Dans la barre latérale, ouvrez **Personnaliser**, puis l'onglet **Compétences**.
+2. Cliquez sur **Créer**, puis **Importer**, et choisissez `prompt-check.zip`.
+3. Vérifiez la compétence, puis validez. Elle apparaît dans **Actives**.
+4. Dans une discussion, tapez `@prompt-check` suivi de votre prompt.
+
+Les compétences demandent un abonnement Google AI Pro ou Ultra et un compte Google personnel.
 
 ### Sans gestion des skills
 
