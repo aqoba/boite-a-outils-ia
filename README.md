@@ -19,11 +19,11 @@ Skills, mods et plugins IA publiés par [aqoba](https://aqoba.fr), pour nos clie
 
 ### claude.ai et application Claude
 
-Téléchargez le dossier `plugins/prompt-check/skills/prompt-check`, compressez-le en `.zip` et ajoutez-le comme skill dans les paramètres de Claude.
+Téléchargez [prompt-check.zip](https://github.com/aqoba/boite-a-outils-ia/releases/download/skills/prompt-check.zip) et importez-le dans les paramètres de Claude, rubrique Skills. Les zips de toutes les skills sont dans la [release « skills »](https://github.com/aqoba/boite-a-outils-ia/releases/tag/skills), reconstruite automatiquement à chaque modification.
 
 ### Autres outils
 
-`prompt-check` suit le format `SKILL.md`, repris par d'autres assistants. Copiez le dossier `plugins/prompt-check/skills/prompt-check` à l'endroit où votre outil range ses skills. Si votre outil ne gère pas les skills, collez le contenu de `SKILL.md` dans ses instructions personnalisées (les fichiers `references/` ne seront alors pas lus).
+`prompt-check` suit le format `SKILL.md`, repris par d'autres assistants. Décompressez le même zip à l'endroit où votre outil range ses skills. Si votre outil ne gère pas les skills, collez le contenu de `SKILL.md` dans ses instructions personnalisées (les fichiers `references/` ne seront alors pas lus).
 
 ## prompt-check
 

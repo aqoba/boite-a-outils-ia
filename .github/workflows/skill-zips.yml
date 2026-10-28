@@ -1,0 +1,51 @@
+name: Zips des skills
+
+# A chaque modification d'une skill sur main, reconstruit un zip par skill
+# et les publie dans la release "skills". Lien stable :
+# https://github.com/<owner>/<repo>/releases/download/skills/<skill>.zip
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "plugins/**"
+      - "scripts/build-skill-zips.sh"
+      - ".github/workflows/skill-zips.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: skill-zips
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Construire les zips
+        run: ./scripts/build-skill-zips.sh
+
+      - name: Publier la release "skills"
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo "Zips des skills, reconstruits automatiquement depuis \`${GITHUB_SHA::7}\`."
+            echo
+            echo "Pour claude.ai : téléchargez le zip de la skill et importez-le dans les paramètres de Claude, rubrique Skills."
+            echo
+            for f in dist/*.zip; do
+              n=$(basename "$f" .zip)
+              echo "- [\`$n.zip\`](https://github.com/${GITHUB_REPOSITORY}/releases/download/skills/$n.zip)"
+            done
+          } > notes.md
+          gh release delete skills --cleanup-tag --yes || true
+          gh release create skills dist/*.zip \
+            --title "Skills (dernière version)" \
+            --notes-file notes.md \
+            --target "$GITHUB_SHA" \
+            --latest
