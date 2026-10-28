@@ -30,6 +30,17 @@ Les compétences demandent un abonnement Google AI Pro ou Ultra et un compte Goo
 
 Les skills sont proposées sur les espaces Business, Enterprise et Edu, si l'administrateur a activé l'import. Si vous ne voyez pas **Plugins** ou **Skills**, voir « Sans gestion des skills » plus bas.
 
+### Codex (application ChatGPT pour le code et le travail sur fichiers)
+
+Pas besoin du zip : envoyez simplement ce message à Codex.
+
+```
+Utilise skill-installer pour installer le skill depuis :
+https://github.com/aqoba/boite-a-outils-ia/tree/main/plugins/prompt-check/skills/prompt-check
+```
+
+Codex copie le dossier complet, références comprises. La skill est disponible au message suivant. Appelez-la avec `$prompt-check` suivi de votre prompt.
+
 ### claude.ai et application Claude
 
 1. Ouvrez **Paramètres**, puis **Capacités**, rubrique **Skills**.
