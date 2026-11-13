@@ -44,7 +44,7 @@ Stay silent unless one of these patterns clearly matches:
 2. **No AI needed**: a calculation, file conversion, renaming, or a search inside a document that a classic tool does for free (spreadsheet, IDE, converter, Ctrl+F).
 3. **Stacked correction**: "no, not like that", "c'est faux", "pas ça" after a wrong answer. Suggest editing the previous message instead, so the wrong answer leaves the history.
 4. **Topic switch**: a new subject unrelated to a long conversation. Suggest a new conversation.
-5. **Heavy attachment**: a whole PDF or long document sent for a narrow question. Suggest sending only the useful extract.
+5. **Heavy attachment**: a whole PDF or long document sent for a narrow question, or a video analysed screenshot by screenshot. Suggest sending only the useful extract, or the transcript.
 
 When a pattern matches, write a single line starting with "Astuce :" (French) or "Tip:" (English), then answer normally. One tip at most, never two.
 

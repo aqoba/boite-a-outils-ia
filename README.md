@@ -61,7 +61,9 @@ Si votre outil ou votre abonnement ne permet pas d'importer une skill, ouvrez [S
 
 ## prompt-check
 
-Lancez-le avec `/prompt-check` suivi de votre prompt, ou demandez simplement « relis mon prompt ». Il vérifie cinq éléments (contexte, objectif, public, format, contraintes), propose une version corrigée prête à copier, puis conseille le modèle et le niveau de réflexion adaptés à votre outil.
+Lancez-le avec `/prompt-check` suivi de votre prompt, ou demandez simplement « relis mon prompt ». Il vérifie cinq éléments (contexte, objectif, public, format, contraintes), propose une version corrigée prête à copier, puis conseille le modèle et le niveau de réflexion (l'effort, chez Claude) adaptés à votre outil.
+
+Il signale aussi les habitudes qui coûtent des tokens sans améliorer la réponse : un rôle générique (« tu es un expert... »), « sois objectif », « réfléchis bien », un PDF entier ou une vidéo analysée capture par capture. Pour des données volumineuses ou sensibles, il propose de faire écrire un petit outil qui les traite sur votre machine plutôt que de les envoyer au modèle.
 
 Quand des informations manquent, il les demande directement si l'outil sait afficher des questions à choix dans la discussion (c'est le cas de Claude, souvent de ChatGPT), puis rend le prompt complet. Sinon, il laisse des `[à préciser]` à compléter, ou vous propose de répondre en un seul message.
 

@@ -13,7 +13,7 @@ If the task is better done without AI (calculation, file conversion, renaming, s
 | Element | What to check |
 | :-- | :-- |
 | Context | Who is asking, in what situation. Does the model have what it cannot guess: organisation, history, decisions already made? |
-| Goal | Is the expected result named, with a way to tell whether it is reached? |
+| Goal | Is the expected result named, with what it will be used for and a way to tell it is done? Knowing why the user needs it helps the model more than any role or template. |
 | Audience | Who the result is for: role, level, language. |
 | Format | Shape and length: table, 5 bullets, a 10-line email, code only... |
 | Constraints | Tone, maximum length, what not to do, sources to use or exclude. |
@@ -24,20 +24,22 @@ Status of each element: OK, Partial or Missing (French: OK, Partiel, Absent). An
 
 Only raise the ones that are a real problem in this prompt.
 
-- **Role**: for an expert task, a role ("You are a senior product manager") steers the model towards the right knowledge. Useless for a mechanical task.
+- **Role**: on recent models, a generic role ("You are an expert...") changes little. Do not add one by default. Keep or add a role only when it carries information the model needs, such as the standpoint to take or the reader's level of expertise; otherwise ask for the why of the request instead (step 2, Goal).
 - **Style**: politeness and conditionals ("could you please, if it's not too much trouble") should become a direct imperative.
-- **Answer length**: if nothing frames it, add a limit, "no introduction or conclusion", no unrequested suggestions.
+- **Instructions that no longer help**: "be objective" or "stay neutral" tends to produce a false balance between two positions; suggest "argue against my idea" or "give me the strongest objections" instead. "Think carefully" or "take your time" adds little on recent models: the reasoning or effort level does that job (see `models.md`).
+- **Answer length**: if nothing frames it, add a limit, "no introduction or conclusion", no unrequested suggestions. A short answer shortens the output, not the reasoning: to cut reasoning, lower the effort or reasoning level.
 - **Stop criterion**: for a review or an improvement, state the expected level ("only flag blocking issues"), otherwise the AI will always find something to change.
-- **Attachments**: whole PDF, long document sent "just in case", full-screen screenshot. Advise sending the useful extract, converting the PDF to text, cropping the image.
+- **Attachments**: whole PDF, long document sent "just in case", full-screen screenshot, a video analysed screenshot by screenshot. Advise sending the useful extract, converting the PDF to text, cropping the image, using the video's transcript.
+- **Bulky or sensitive data** (bank statements, client files, large exports): suggest asking the AI to write a script or a small local tool that processes the data on the user's machine, built from a redacted sample (values replaced, not just blacked out) or from fake data based on the column headers. The model then sees the code, not the data, and only the script's output costs tokens.
 - **Contradictions or ambiguities**: point them out. They derail small models and reasoning modes most.
-- **Task too big for one prompt**: suggest asking for a plan to validate first, or separating design from execution.
+- **Task too big for one prompt**: suggest asking for a plan to validate first, then carrying it out step by step.
 - **Language**: never advise switching to English to save tokens. The prompt stays in the language where the user is most precise.
 
 ## Step 4 - Rewrite the prompt
 
 - Keep the user's intent and words. Complete, do not reinvent.
 - Invent no facts. When information is missing and cannot be guessed, leave a bracketed placeholder: `[à préciser : public visé]` in French, `[to specify: target audience]` in English.
-- Structure: role if useful, context, task, format, constraints. Short labels if the prompt is long, plain sentences if it is short.
+- Structure: context (including why the result is needed), task, format, constraints. A role only if it carries information (step 3). Short labels if the prompt is long, plain sentences if it is short.
 - Imperative, no politeness, no filler. Not longer than needed: a 2-line request can become 4 or 5 lines, not 20.
 - If the original prompt is already good, say so and suggest one or two touch-ups at most. Do not rewrite for the sake of it.
 
@@ -72,9 +74,9 @@ Use the user's language for headings. French / English labels:
 
 **Prompt amélioré / Improved prompt**, in a code block so it copies easily, followed by "Remplis les [à préciser] avant d'envoyer." / "Fill in the [to specify] parts before sending." if there are any. With a question tool (step 6), this block comes after the user's answers instead.
 
-**Modèle conseillé / Recommended model**: tool, model and reasoning level. One sentence for why, one sentence for plan B (one step up or down).
+**Modèle conseillé / Recommended model**: tool, model and reasoning level (effort level in Claude). One sentence for why, one sentence for plan B (one step up or down, following the plan B rule in `models.md`).
 
-**Avant d'envoyer / Before sending** (optional, one or two tips at most): extract rather than whole document, cropped image, new conversation if the task is unrelated to the current one.
+**Avant d'envoyer / Before sending** (optional, one or two tips at most): extract rather than whole document, cropped image, transcript rather than video screenshots, new conversation if the task is unrelated to the current one.
 
 ## Example (French)
 
@@ -103,7 +105,7 @@ Contraintes : sans introduction ni conclusion. N'invente aucun responsable ni au
 
 Remplis les [à préciser] avant d'envoyer.
 
-**Modèle conseillé** : Claude Haiku, sans réflexion. Résumer un texte court dans un format fixé ne demande pas de raisonnement. Si le compte-rendu est confus ou très long, passe à Sonnet.
+**Modèle conseillé** : Claude Haiku. Résumer un texte court dans un format fixé ne demande pas de raisonnement poussé. Si le compte-rendu est confus ou très long, passe à Sonnet.
 
 ## Example (English)
 
