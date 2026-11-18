@@ -1,0 +1,33 @@
+name: Prévenir la marketplace interne
+
+# A chaque modification d'un plugin sur main, lance la synchro de la
+# marketplace interne aqoba (dépôt privé aqoba/boite-a-outils-ia-interne),
+# qui reprend tous les plugins publiés ici. Sans ce déclenchement, la
+# synchro passe quand même toutes les heures.
+# Secret requis : INTERNAL_SYNC_TOKEN, token fine-grained limité au dépôt
+# interne avec la permission Actions en lecture/écriture.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".claude-plugin/marketplace.json"
+      - "plugins/**"
+      - ".github/workflows/notify-internal-marketplace.yml"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lancer la synchro interne
+        env:
+          GH_TOKEN: ${{ secrets.INTERNAL_SYNC_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "Secret INTERNAL_SYNC_TOKEN absent : la synchro horaire du dépôt interne prendra le relais."
+            exit 0
+          fi
+          gh workflow run sync-public-plugins.yml -R aqoba/boite-a-outils-ia-interne --ref main
