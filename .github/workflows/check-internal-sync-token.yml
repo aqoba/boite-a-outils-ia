@@ -1,0 +1,51 @@
+name: Vérifier le token de synchro interne
+
+# Chaque lundi, vérifie que le secret INTERNAL_SYNC_TOKEN (utilisé par
+# "Prévenir la marketplace interne") fonctionne encore et n'expire pas
+# dans les 3 semaines. Sinon le workflow échoue et GitHub envoie un mail.
+# Pour renouveler : créer un nouveau token fine-grained (owner aqoba,
+# dépôt boite-a-outils-ia-interne, Actions en lecture/écriture) et
+# remplacer le secret INTERNAL_SYNC_TOKEN de ce dépôt.
+
+on:
+  schedule:
+    - cron: "17 7 * * 1"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/check-internal-sync-token.yml"
+
+permissions: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Vérifier le token
+        env:
+          TOKEN: ${{ secrets.INTERNAL_SYNC_TOKEN }}
+          ALERT_DAYS: "21"
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "::error::Secret INTERNAL_SYNC_TOKEN absent."
+            exit 1
+          fi
+          code=$(curl -sS -o /dev/null -D headers.txt -w '%{http_code}' \
+            -H "Authorization: Bearer $TOKEN" \
+            https://api.github.com/repos/aqoba/boite-a-outils-ia-interne/actions/workflows/sync-public-plugins.yml)
+          if [ "$code" != "200" ]; then
+            echo "::error::Le token INTERNAL_SYNC_TOKEN ne fonctionne plus (HTTP $code) : expiré, révoqué ou sans accès au dépôt interne. A renouveler."
+            exit 1
+          fi
+          expiry=$(grep -i '^github-authentication-token-expiration:' headers.txt | cut -d' ' -f2- | tr -d '\r')
+          if [ -z "$expiry" ]; then
+            echo "Token valide, sans date d'expiration."
+            exit 0
+          fi
+          days=$(( ( $(date -d "$expiry" +%s) - $(date +%s) ) / 86400 ))
+          echo "Token valide, expire le $expiry (dans $days jours)."
+          if [ "$days" -lt "$ALERT_DAYS" ]; then
+            echo "::error::Le token INTERNAL_SYNC_TOKEN expire le $expiry (dans $days jours). A renouveler."
+            exit 1
+          fi
